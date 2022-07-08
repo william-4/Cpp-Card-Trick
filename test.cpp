@@ -6,12 +6,12 @@ using namespace std;
 void BuildDeck( int deck[], const int size );
 void PrintDeck( int deck[], const int size );
 void PrintCard( int card );
+void Deal( int deck[], int play[][3] );
 
 int main(void)
 {
-
 /* declare and initialize variables */
-	int column = 0, i = 0, c = 0, r = 0;
+	int column = 0, i = 0;
 	char *name;
 	char answer;
 
@@ -21,12 +21,8 @@ int main(void)
 /* Declare a 7 by 3 array to receive the cards dealt to play the trick */
 	int play[7][3] = {0};
 
-
-
 /* Generate a random seed for the random number generator. */
 	srand(time(0));
-
-
 
 /* Openning message.  Ask the player for his/her name */
 	cout << "Hello, I am a really tricky computer program and " << endl
@@ -51,6 +47,8 @@ int main(void)
     if (answer == 'y')
         PrintDeck(deck, 52);
         
+    Deal(deck, play);
+        
     return 1;
 }
 
@@ -74,6 +72,7 @@ void BuildDeck( int deck[], const int size)
 			  i++;
 		  }
     }
+    return;
 
 }
 void PrintDeck( int deck[], const int size )
@@ -82,7 +81,12 @@ void PrintDeck( int deck[], const int size )
 
 	/* Print out each card in the deck */
 	for (i = 0; i < size; i++)
+	{
 		PrintCard(deck[i]);
+		cout << endl;
+	}
+		
+	return;
 }
 
 void PrintCard( int card )
@@ -93,23 +97,17 @@ void PrintCard( int card )
 	char *rankArray[4] = {"King of ", "Queen of ", "Jack of ", "Ace of "};
 	char *suitArray[4] = {"Spades", "Diamonds", "Clubs", "Hearts"};
 
-	// Determine the rank of the card and print it out i.e. Queen
+	// Determine the rank of the card after 10 and print it out i.e. Queen
 	if (card == 10 || card == 23 || card == 36 || card == 49)
-	{
 		cout << rankArray[0];
-	}
 	else if (card == 11 || card == 24 || card == 37 || card == 50)
-	{
 	    cout << rankArray[1];
-	}
 	else if (card == 12 || card == 25 || card == 38 || card == 51)
-	{
 	    cout << rankArray[2];
-	}
 	else if (card == 0 || card == 13 || card == 26|| card == 39)
-	{
 	    cout << rankArray[3];
-	}
+
+	/* Determine rank of cards from 2 and 10 */
 	else
 	{
 	    if (card < 13)
@@ -134,6 +132,37 @@ void PrintCard( int card )
 	else if (card > 39 && card < 52)
 	    suit = 3;
 	    
-	cout << suitArray[suit] << endl;
+	cout << suitArray[suit];
+	return;
+}
+
+void Deal( int deck[], int play[][3] )
+{
+	int row = 0, col = 0, card = 0;
+
+	/* deal cards by passing addresses of cardvalues from
+	   the deck array to the play array                   */
+	cout << endl;
+	cout << "   Column 0           Column 1           Column 2";
+	cout << "======================================================="
+	     << endl;
+	for (row = 0; row < 7; row++)
+	{
+	    for (col = 0; col < 3; col++)
+	    {
+	        play[row][col] = deck[card];
+	        card += 2;
+	    }
+	}
+	for (row = 0; row < 7; row++)
+	{
+	    for (col = 0; col < 3; col++)
+	    { 
+	        card = play[row][col];
+	        cout << setw(5);
+	        PrintCard(card);
+	    }
+	    cout << endl;
+	}
 	return;
 }
