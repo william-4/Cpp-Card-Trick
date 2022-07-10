@@ -5,8 +5,8 @@
  *
  * Purpose: This program implements the 21 cards card trick
  *
- * Write a program that performs a cardtrick. The program will create a
- * random deck of cards, deal them out, pick them up, and determine the
+ * The program will create a random deck of cards,
+ * deal them out, pick them up, and determine the
  * secret card.
  *
 */
@@ -139,6 +139,7 @@ void PrintDeck( int deck[], const int size )
 	cout << "The total number of cards is: " << i << endl;
 	return;
 }
+
 /* This function determines the correct rank and suit of a card  */
 void PrintCard( int card )
 {
