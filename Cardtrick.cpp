@@ -1,15 +1,11 @@
-/* File: Cardtrick.cpp
- * Programmer:
- * Date: 9th July 2022
- * Course: COP 2931
- *
+/**
  * Purpose: This program implements the 21 cards card trick
  *
  * The program will create a random deck of cards,
  * deal them out, pick them up, and determine the
  * secret card.
  *
-*/
+ */
 
 #include <iostream>
 #include <iomanip>
